@@ -11,7 +11,7 @@
 #define BubbleWidth self.bounds.size.width
 #define BubbleHeight self.bounds.size.height
 
-NSInteger const cornerRadiuslength = 3; //倒角的半径
+NSInteger const cornerRadiuslength = 10; //倒角的半径
 NSInteger const crossgrap = 10; // bubble 尖角 的width
 NSInteger const triangleY = 20; // bubble 尖角 的frame.origin.y
 

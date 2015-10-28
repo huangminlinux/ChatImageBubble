@@ -12,5 +12,5 @@
 @interface ChatImageBubble : UIImageView
 @property (strong, nonatomic)ChatBubbleLayer *maskBubbleLayer;
 
-- (void)setBubbleSide:(BOOL)isReci;
+- (void)setBubbleSide:(BOOL)isReci;// 注意这个方法要在setframe 之前调用，应为setNeedDisplay 在setframe里面调用了
 @end

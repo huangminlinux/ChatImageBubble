@@ -21,7 +21,9 @@
   }
   return self;
 }
-
+- (void)setBubbleSide:(BOOL)isReci {
+  self.maskBubbleLayer.isReceivedBubble = isReci;
+}
 - (void)setFrame:(CGRect)frame {
   [super setFrame:frame];
   //  self.maskBubbleLayer.bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);

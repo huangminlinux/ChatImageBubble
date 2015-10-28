@@ -49,7 +49,13 @@
   if (imagecell == nil) {
     imagecell = [[ChatImageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imagecellIdentifier];
   }
-  [imagecell setDataWithModel:_imgArr[indexPath.row]];
+  
+  if (indexPath.row % 2 == 0) {
+    [imagecell setDataWithModel:_imgArr[indexPath.row] withSide:NO];
+  } else {
+    [imagecell setDataWithModel:_imgArr[indexPath.row] withSide:YES];
+  }
+
   
   return imagecell;
 }

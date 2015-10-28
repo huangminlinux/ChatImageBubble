@@ -19,6 +19,44 @@ NSInteger const triangleY = 20; // bubble 尖角 的frame.origin.y
 @implementation ChatBubbleLayer
 
 - (void)drawInContext:(CGContextRef)ctx {
+  if (_isReceivedBubble) {
+    
+    //  C----D    -
+    //  |    |    | -> triangleY
+    //  |    |    |
+    // <     |    -
+    //  |    |
+    //  |    |
+    //  B----A   四个点
+    //
+    UIBezierPath *bubblePath = [UIBezierPath bezierPath];
+    // point A
+    [bubblePath moveToPoint:CGPointMake(BubbleWidth  , BubbleHeight - cornerRadiuslength)];
+    [bubblePath addQuadCurveToPoint:CGPointMake(BubbleWidth - cornerRadiuslength, BubbleHeight) controlPoint:CGPointMake(BubbleWidth - crossgrap, BubbleHeight)];
+    // point B
+    [bubblePath addLineToPoint:CGPointMake(cornerRadiuslength + crossgrap, BubbleHeight)];
+    [bubblePath addQuadCurveToPoint:CGPointMake(crossgrap, BubbleHeight - cornerRadiuslength) controlPoint:CGPointMake(crossgrap, BubbleHeight)];
+    // point C
+    [bubblePath addLineToPoint:CGPointMake(crossgrap, cornerRadiuslength)];
+    [bubblePath addQuadCurveToPoint:CGPointMake(cornerRadiuslength + crossgrap, 0) controlPoint:CGPointMake(crossgrap, 0)];
+    // point D
+    [bubblePath addLineToPoint:CGPointMake(BubbleWidth - cornerRadiuslength, 0)];
+    [bubblePath addQuadCurveToPoint:CGPointMake(BubbleWidth, cornerRadiuslength) controlPoint:CGPointMake(BubbleWidth, 0)];
+    [bubblePath closePath];
+    UIBezierPath *trianglePath = [UIBezierPath bezierPath];
+    [trianglePath moveToPoint:CGPointMake(crossgrap, triangleY)];
+    [trianglePath addLineToPoint:CGPointMake(0, triangleY + 6)];
+    [trianglePath addLineToPoint:CGPointMake(crossgrap, triangleY + 12)];
+    [trianglePath closePath];
+    CGContextAddPath(ctx, trianglePath.CGPath);
+    
+    CGContextAddPath(ctx, bubblePath.CGPath);
+    CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:29.0/255.0 green:163.0/255.0 blue:1 alpha:1].CGColor);
+    CGContextFillPath(ctx);
+
+  } else {
+    
+  
   // C----D    -
   // |    |    | -> triangleY
   // |    |    |
@@ -51,7 +89,8 @@ NSInteger const triangleY = 20; // bubble 尖角 的frame.origin.y
   CGContextAddPath(ctx, bubblePath.CGPath);
   CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:29.0/255.0 green:163.0/255.0 blue:1 alpha:1].CGColor);
   CGContextFillPath(ctx);
-  
+
+}
 }
 
 @end

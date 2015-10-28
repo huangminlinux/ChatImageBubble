@@ -13,5 +13,5 @@
 @interface ChatImageTableViewCell : UITableViewCell
 @property(strong, nonatomic)ChatImageBubble *imageBubble;
 
-- (void)setDataWithModel:(ImageModel *)imageModel;
+- (void)setDataWithModel:(ImageModel *)imageModel withSide:(BOOL)isReci;
 @end

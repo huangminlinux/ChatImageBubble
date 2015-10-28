@@ -23,9 +23,10 @@
   return self;
 }
 
-- (void)setDataWithModel:(ImageModel *)imageModel {
+- (void)setDataWithModel:(ImageModel *)imageModel withSide:(BOOL)isReci {
+  [self.imageBubble setBubbleSide:isReci];
   self.imageBubble.image  = [UIImage imageNamed:imageModel.imageName];
-  self.imageBubble.frame = CGRectMake(20, 20, imageModel.imageSize.width, imageModel.imageSize.height);
+  self.imageBubble.frame = CGRectMake(isReci?20:150, 20, imageModel.imageSize.width, imageModel.imageSize.height);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
